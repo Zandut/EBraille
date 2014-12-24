@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/item5" android:title="Kotak Masuk" android:icon="@drawable/inbox"></item>
+    <item android:id="@+id/item1" android:title="Kotak Keluar" android:icon="@drawable/outbox"></item>
+    <item android:id="@+id/item2" android:title="Kamus Braille" android:icon="@drawable/kamus"></item>
+    
+    <item android:id="@+id/item3" android:title="Petunjuk" android:icon="@drawable/petunjuk"></item>
+    <item android:id="@+id/item4" android:title="Tentang Kami" android:icon="@drawable/tentangkami"></item>
+    
+
+</menu>

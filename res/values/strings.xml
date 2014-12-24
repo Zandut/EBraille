@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">E-Braille</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">1</string>
+    <string name="title_section2">2</string>
+    <string name="title_section3">3</string>
+    <string name="title_section4">4</string>
+    <string name="title_section5">5</string>
+    <string name="title_section6">6</string>
+    <string name="title_section7">7</string>
+    <string name="title_section8">8</string>
+    <string name="title_section9">9</string>
+    <string name="title_section10">10</string>
+    <string name="title_section11">11</string>
+    <string name="title_section12">12</string>
+    <string name="title_section13">13</string>
+    <string name="title_section14">14</string>
+    <string name="title_section15">15</string>
+    <string name="title_section16">16</string>
+    <string name="title_section17">17</string>
+    <string name="title_section18">18</string>
+    <string name="title_section19">19</string>
+    <string name="title_section20">20</string>
+
+</resources>
