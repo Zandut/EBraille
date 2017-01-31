@@ -952,11 +952,11 @@ private speech play;
 				this.finish();
 				break;
 				
-			case R.id.item4:
-				Intent inten4 = new Intent(getApplicationContext(), ActivityAboutUs.class);
-				startActivity(inten4);
-				this.finish();
-				break;
+//			case R.id.item4:
+//				Intent inten4 = new Intent(getApplicationContext(), ActivityAboutUs.class);
+//				startActivity(inten4);
+//				this.finish();
+//				break;
 				
 			case R.id.item5:
 				Intent inten5 = new Intent(getApplicationContext(), ActivityKotakMasuk.class);

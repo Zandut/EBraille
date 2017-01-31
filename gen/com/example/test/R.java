@@ -131,11 +131,10 @@ public final class R {
         public static final int item1=0x7f09000f;
         public static final int item2=0x7f090010;
         public static final int item3=0x7f090011;
-        public static final int item4=0x7f090012;
         public static final int item5=0x7f09000e;
         public static final int itemGambar=0x7f090007;
-        public static final int item_hapus=0x7f090014;
-        public static final int item_sound=0x7f090013;
+        public static final int item_hapus=0x7f090013;
+        public static final int item_sound=0x7f090012;
         public static final int listView1=0x7f090000;
         public static final int pager=0x7f09000b;
         public static final int pager_title_strip=0x7f09000c;
