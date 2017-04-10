@@ -198,18 +198,18 @@ public class JSON {
             Iterator<Map.Entry<String, String>> iterator = parameter.entrySet()
                     .iterator();
 
-            postBody.append("{");
+            
             while (iterator.hasNext()) {
                 Map.Entry<String, String> param = iterator.next();
-                postBody.append("\""+param.getKey()+"\"").append(":")
+                postBody.append(param.getKey()).append("=")
                         .append(param.getValue());
                 if (iterator.hasNext()) {
-                    postBody.append(",");
+                    postBody.append("&");
                 }
             }
             
             
-            postBody.append("}");
+            
             String body = postBody.toString();
             
             byte[] bytes = body.getBytes();

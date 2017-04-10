@@ -2,10 +2,16 @@ package com.ebraille.view;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +22,7 @@ import android.database.Cursor;
 import android.graphics.AvoidXfermode;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.gsm.SmsManager;
 import android.view.Display;
@@ -33,6 +40,7 @@ import com.ebraille.controller.KotakKeluar;
 import com.ebraille.controller.KotakMasuk;
 import com.ebraille.controller.SMS;
 import com.ebraille.controller.speech;
+import com.ebraille.models.Aplikasi;
 import com.ebraille.models.Braille;
 import com.ebraille.models.Database;
 import com.example.test.R;
@@ -435,7 +443,10 @@ private speech play;
 		return db.getAllKotakKeluar();
 	}
 	
-	
+	private Long miliAwal;
+	private Long miliAkhir;
+	private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+	private Aplikasi apps;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -443,6 +454,10 @@ private speech play;
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		miliAwal = System.currentTimeMillis() / 1000;
+		
+		apps = new Aplikasi(this);
 		
 		
 		//getWindow().addFlags(WindowManager.LayoutParam)
@@ -969,13 +984,70 @@ private speech play;
 	
 	
 	@Override
-		public void onBackPressed() {
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		miliAkhir = System.currentTimeMillis() / 1000;
+	
+		if (play.isSpeaking())
+			play.stop();
+		
+		long selisih = miliAkhir - miliAwal;
+		String data[] = {""+getIntent().getExtras().getInt("id"), ""+selisih};
+		new logOut().execute(data);
+	}
+	
+	
+	private class logOut extends AsyncTask<String, String, JSONObject>
+	{
+		private ProgressDialog progress = new ProgressDialog(AppsEbraille.this);
+		
+		@Override
+		protected void onPreExecute() {
 			// TODO Auto-generated method stub
-			if (play.isSpeaking())
-				play.stop();
-			
-			this.finish();
+			super.onPreExecute();
+			progress.setMessage(getString(R.string.loading));
+			progress.setCancelable(false);
+			progress.show();
 		}
+		@Override
+		protected JSONObject doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			apps.resetJson();
+			HashMap<String, String> parameter = new HashMap<String, String>();
+			parameter.put("id_user", params[0]);
+			parameter.put("length", params[1]);
+			
+			return apps.getJson().getJsonObject(parameter);
+		}
+		
+		@Override
+		protected void onPostExecute(JSONObject result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			progress.dismiss();
+			
+			if (result != null)
+			{
+				try {
+					if (result.getInt("status") == 1)
+					{
+						Toast.makeText(AppsEbraille.this, "Thanks for using this Application.", Toast.LENGTH_SHORT).show();
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					Toast.makeText(AppsEbraille.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+				}
+				
+				
+			}
+			else
+			{
+				Toast.makeText(AppsEbraille.this, "ERROR", Toast.LENGTH_SHORT).show();
+			}
+			
+			AppsEbraille.this.finish();
+		}
+	}
 	
 	
 

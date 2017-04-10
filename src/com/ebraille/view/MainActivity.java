@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 					}
 				}
 				
-				startActivity(new Intent(getApplicationContext(), AppsEbraille.class));
+				startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
 				MainActivity.this.finish();
 				play.speak("Silahkan mulai mengetik");
 			}

@@ -16,7 +16,7 @@ public class Aplikasi {
 		return json;
 	}
 	
-	private void resetJson() {
+	public void resetJson() {
 		json = new JSON();
 
 	}
